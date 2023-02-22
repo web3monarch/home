@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Container, { OuterContainer, InnerContainer } from './Container'
-import { Logo } from '../Monarch/Logo';
+import { Logo } from '../Monarch/LogoNew';
 import { TwitterIcon, InstagramIcon, GitHubIcon, LinkedInIcon } from '../Icons/SocialIcons';
 import clsx from 'clsx';
 import social from '../../config/constants/social';

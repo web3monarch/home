@@ -9,7 +9,7 @@ import { XMarkIcon, ChevronDownIcon, SunIcon, MoonIcon, WalletIcon } from '@hero
 import Container, { OuterContainer, InnerContainer } from "./Container";
 import Connect from './Connect';
 
-import { Logo } from '../Monarch/Logo';
+import { Logo } from '../Monarch/LogoNew';
 
 
 type LinkProps = {
