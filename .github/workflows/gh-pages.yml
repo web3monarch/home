@@ -51,7 +51,7 @@ jobs:
         run: yarn build
 
       - name: CNAME 🚀🚀
-        run: echo "home.monarch.one" > ./out/CNAME
+        run: echo "monarch.one" > ./out/CNAME
 
       - name: Deploy 🚀🚀🚀
         uses: JamesIves/github-pages-deploy-action@v4
