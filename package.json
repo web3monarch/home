@@ -5,7 +5,7 @@
     "scripts": {
         "dev": "APP_ENV=development PORT=8080 next dev",
         "build": "next build && next export",
-        "deploy": "firebase deploy --only hosting:web3jt-dapp",
+        "deploy": "firebase deploy",
         "start": "next start",
         "lint": "next lint",
         "typechain": "typechain --out-dir src/config/abi/types --target=ethers-v5 \"src/config/abi/*.json\""

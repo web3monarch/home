@@ -1,6 +1,5 @@
 {
   "hosting": {
-    "site": "web3jt-dapp",
     "public": "out",
     "ignore": [
       "firebase.json",
