@@ -17,12 +17,10 @@ import {
 } from "wagmi";
 import CONTRACT_ABI from '../../config/abi/monarchMixer';
 
-import TokenImage0 from '../../images/tokens/0.svg';
-import TokenImage1 from '../../images/tokens/1.svg';
-import TokenImage2 from '../../images/tokens/2.svg';
-
+// import TokenImage0 from '../../images/tokens/0.svg';
+import TokenImage1 from '../../images/tokens/1.jpg';
+// import TokenImage2 from '../../images/tokens/2.svg';
 import social from '../../config/constants/social';
-
 
 
 type TokenMeta = {
@@ -31,35 +29,39 @@ type TokenMeta = {
 }
 
 const TOKEN_METAS = [
-    {
-        imageSrc: TokenImage0,
-        imageAlt: 'Default Image',
-    },
+    // {
+    //     imageSrc: TokenImage0,
+    //     imageAlt: 'Default Image',
+    // },
     {
         imageSrc: TokenImage1,
         imageAlt: 'Token #1 Image',
     },
-    {
-        imageSrc: TokenImage2,
-        imageAlt: 'Token #2 Image',
-    },
+    // {
+    //     imageSrc: TokenImage2,
+    //     imageAlt: 'Token #2 Image',
+    // },
 ]
 
 const MONARCH_MIXER_CONTRACT_CONFIG = {
-    address: '0xdd6E2713CBb317e36B7ebc8110A37B94096B86a9',
+    // address: '0x3Ce56CDA2ad1d2E2E15a9e3A3Cdff7986E505a55',
+    address: '0xCFB211ff3FbC00729DE3FDCd1D105d58B5E98d6D',
     abi: CONTRACT_ABI,
 };
 
 interface MintCodeJSON {
     tokenId: number,
-    proofId: number,
-    proof: readonly `0x${string}`[],
+    sigId: number,
+    sig: `0x${string}`,
 }
 
 function isMintCodeJSON(obj: any): obj is MintCodeJSON {
+    console.log('isMintCodeJSON');
+    console.log(obj);
+
     if (typeof obj.tokenId !== 'number') return false;
-    if (typeof obj.proofId !== 'number') return false;
-    if (!Array.isArray(obj.proof)) return false;
+    if (typeof obj.sigId !== 'number') return false;
+    if (!ethers.utils.isHexString(obj.sig)) return false;
     return true;
 }
 
@@ -82,9 +84,6 @@ const DEFAULT_TIP = {
 
 
 function Example() {
-
-
-
     const { address, isConnected } = useAccount();
     const { openConnectModal } = useConnectModal();
 
@@ -94,11 +93,11 @@ function Example() {
     const [mintCodeJSON, setMintCodeJSON] = useState<MintCodeJSON>();
     useEffect(() => {
         writeMint.reset();
-
         if (mintCode) {
             try {
                 const strJson = new TextDecoder().decode(ethers.utils.base58.decode(mintCode));
                 const json = JSON.parse(strJson);
+                console.log(`json: ${json.sigId}`);
 
                 if (!isMintCodeJSON(json)) {
                     setMintCodeJSON(undefined);
@@ -108,6 +107,8 @@ function Example() {
 
                 setMintCodeJSON(JSON.parse(strJson));
                 setMintCodeError(undefined);
+
+                console.log(json);
             } catch (e) {
                 setMintCodeJSON(undefined);
                 setMintCodeError('MintCode: invalid');
@@ -127,8 +128,8 @@ function Example() {
         functionName: 'mint',
         args: debouncedMintCodeJSON ? [
             ethers.BigNumber.from(debouncedMintCodeJSON.tokenId),
-            ethers.BigNumber.from(debouncedMintCodeJSON.proofId),
-            debouncedMintCodeJSON.proof,
+            ethers.BigNumber.from(debouncedMintCodeJSON.sigId),
+            debouncedMintCodeJSON.sig,
         ] : undefined,
         cacheTime: 13_000,
         enabled: Boolean(debouncedMintCodeJSON) && !mintCodeError,
@@ -189,7 +190,7 @@ function Example() {
             &&
             TOKEN_METAS.length >= mintCodeJSON.tokenId
         ) {
-            setTokenMeta(TOKEN_METAS[mintCodeJSON.tokenId]);
+            setTokenMeta(TOKEN_METAS[mintCodeJSON.tokenId - 1]);
             return;
         }
 
@@ -378,7 +379,7 @@ function Example() {
                             <div>
                                 <Link
                                     target="_blank"
-                                    href={social.openSea}
+                                    href={social.openSeaMixer}
                                     className="inline-flex items-center rounded-full bg-black p-1 pr-2 text-white hover:text-pure-200 sm:text-base lg:text-sm xl:text-base"
                                 >
                                     <span className="rounded-full bg-sec-500 px-3 py-0.5 text-sm font-semibold leading-5 text-white">
@@ -420,7 +421,7 @@ function Example() {
                                                     type="mint-code"
                                                     onChange={(e) => setMintCode(e.currentTarget.value.trim())}
                                                     placeholder="Enter your Mint-Code"
-                                                    className="block w-full rounded-md border-0 px-4 py-3 disabled:bg-pure-300 text-base text-pure-900 placeholder-pure-500 focus:outline-none focus:ring-2 focus:ring-sec-300 focus:ring-offset-2 focus:ring-offset-pure-900 disabled:placeholder-pure-400"
+                                                    className="block w-full rounded-md border-0 px-4 py-3 disabled:bg-pure-300 text-base text-pure-200 placeholder-pure-400 focus:outline-none focus:ring-2 focus:ring-sec-300 focus:ring-offset-2 focus:ring-offset-pure-900 disabled:placeholder-pure-600"
                                                     disabled={!isConnected}
                                                 />
                                             </div>
@@ -437,7 +438,7 @@ function Example() {
                             <div className="sm:mx-auto sm:w-full sm:max-w-md sm:overflow-hidden">
                                 {/* ... sm:rounded-lg */}
                                 <Image
-                                    className="h-full w-auto"
+                                    className="h-full w-auto rounded-xl"
                                     src={tokenMeta.imageSrc}
                                     alt={tokenMeta.imageAlt}
                                     priority={true}

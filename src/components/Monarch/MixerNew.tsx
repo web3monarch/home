@@ -1,10 +1,12 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Fragment } from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { ChevronRightIcon } from '@heroicons/react/20/solid';
 import social from '../../config/constants/social';
 import clsx from 'clsx';
+import mixer1 from '../../images/tokens/1.jpg';
 
 function Example() {
     return (
@@ -39,7 +41,7 @@ function Example() {
                             <div>
                                 <Link
                                     target="_blank"
-                                    href={social.openSea}
+                                    href={social.openSeaMixer}
                                     className="inline-flex items-center rounded-full bg-zinc-800 p-1 pr-2 text-white hover:text-pure-200 sm:text-base lg:text-sm xl:text-base"
                                 >
                                     <span className="rounded-full bg-gradient-to-r from-pri-700 to-pri-600 px-3 py-0.5 text-sm font-semibold leading-5 text-white">
@@ -82,9 +84,15 @@ function Example() {
                             </div>
                         </div>
                         <div className="mt-16 sm:mt-24 lg:col-span-6 lg:mt-0">
-                            <div className="h-64 w-64 bg-white sm:mx-auto sm:w-full sm:max-w-md sm:overflow-hidden sm:rounded-lg">
+                            <Image
+                                src={mixer1}
+                                alt=""
+                                sizes="(min-width: 1024px) 32rem, 20rem"
+                                className="aspect-square rounded-2xl bg-pure-100 object-cover dark:bg-pure-800"
+                            />
+                            {/* <div className="h-64 w-64 bg-white sm:mx-auto sm:w-full sm:max-w-md sm:overflow-hidden sm:rounded-lg">
 
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </main>

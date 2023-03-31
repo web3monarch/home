@@ -69,7 +69,7 @@ const DesktopNav = ({ className, style }: StyleProps) => {
         <nav className={className} style={style}>
             <ul className="flex rounded-full bg-white/90 px-3 text-sm font-medium text-pure-800 shadow-lg shadow-pure-800/5 ring-1 ring-pure-900/5 backdrop-blur dark:bg-pure-800/90 dark:text-pure-200 dark:ring-white/10">
                 <NavItem href="/">Home</NavItem>
-                {/* <NavItem href="/#mixer">Mixer</NavItem> */}
+                <NavItem href="/#mixer">Mixer</NavItem>
                 <NavItem href="/#team">Team</NavItem>
                 <NavItem href="/about">About</NavItem>
             </ul>
@@ -121,6 +121,7 @@ const MobileNavigation = ({ className, style }: StyleProps) => {
                         <nav className="mt-6">
                             <ul className="-my-2 divide-y divide-pure-100 text-base text-pure-800 dark:divide-pure-100/5 dark:text-pure-300">
                                 <MobileNavItem href="/">Home</MobileNavItem>
+                                <MobileNavItem href="/#mixer">Mixer</MobileNavItem>
                                 <MobileNavItem href="/#team">Team</MobileNavItem>
                                 <MobileNavItem href="/about">About</MobileNavItem>
                             </ul>
