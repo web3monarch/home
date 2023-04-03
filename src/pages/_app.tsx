@@ -30,12 +30,12 @@ function DApp({ Component, pageProps }: AppProps) {
                 <RainbowKitProvider
                     theme={darkTheme()}
                     chains={chains}
-                    initialChain={chain.goerli}
+                    initialChain={chain.mainnet}
                     // showRecentTransactions={true}
                     appInfo={{
                         // TODO
-                        appName: 'Rainbowkit Demo',
-                        learnMoreUrl: 'https://learnaboutcryptowallets.example',
+                        appName: 'Monarch',
+                        learnMoreUrl: 'https://monarch.one',
                     }}
                 >
                     <Layout>
