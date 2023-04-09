@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import React from 'react';
 import Head from "next/head";
-import Form from "../components/Monarch/Form";
+import FormWhitelist from "../components/Monarch/FormWhitelist";
 import Container, { OuterContainer, InnerContainer } from "../components/Layout/Container";
 
 const Page: NextPage = () => {
@@ -13,7 +13,7 @@ const Page: NextPage = () => {
             </Head>
 
             <Container className="mt-12">
-                <Form />
+                <FormWhitelist />
             </Container>
         </>
     );
