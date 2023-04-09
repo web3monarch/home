@@ -1,14 +1,14 @@
 {
-    "name": "wagmi-template",
+    "name": "next-on-firebase",
     "version": "0.1.0",
     "private": true,
+    "main": "server.js",
     "scripts": {
-        "dev": "APP_ENV=development PORT=8080 next dev",
+        "dev": "APP_ENV=development next dev",
         "build": "next build && next export",
-        "deploy": "firebase deploy",
-        "start": "next start",
-        "lint": "next lint",
-        "typechain": "typechain --out-dir src/config/abi/types --target=ethers-v5 \"src/config/abi/*.json\""
+        "deploy": "yarn build && firebase deploy",
+        "preview": "yarn build && firebase hosting:channel:deploy preview --only functions,hosting",
+        "start": "next start"
     },
     "dependencies": {
         "@rainbow-me/rainbowkit": "^0.7.4",
@@ -16,6 +16,9 @@
         "classnames": "^2.3.2",
         "clsx": "^1.2.1",
         "ethers": "^5.7.2",
+        "firebase": "^9.19.1",
+        "firebase-admin": "^11.6.0",
+        "firebase-functions": "^4.2.1",
         "next": "^13.2.4",
         "next-themes": "^0.2.1",
         "react": "^18.2.0",
