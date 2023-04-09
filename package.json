@@ -1,11 +1,11 @@
 {
-    "name": "next-on-firebase",
+    "name": "monarch-one",
     "version": "0.1.0",
     "private": true,
     "main": "server.js",
     "scripts": {
         "dev": "APP_ENV=development next dev",
-        "build": "next build && next export",
+        "build": "next build",
         "deploy": "yarn build && firebase deploy",
         "preview": "yarn build && firebase hosting:channel:deploy preview --only functions,hosting",
         "start": "next start"
