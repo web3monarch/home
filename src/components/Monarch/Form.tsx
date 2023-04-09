@@ -12,14 +12,15 @@ const Form = () => {
 
         try {
             await firestore.collection("users").add({
-                name,
-                email,
+                name: name,
+                email: email,
             }).catch(e => console.log(e));
             setName("");
             setEmail("");
+            console.log("Success!");
             alert("Success!");
         } catch (error) {
-            console.error("Error submitting data to Firestore: ", error);
+            console.error("Error:", error);
         }
     };
 
