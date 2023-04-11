@@ -6,8 +6,9 @@
     "scripts": {
         "dev": "APP_ENV=development next dev",
         "build": "next build",
-        "deploy": "yarn build && firebase deploy",
-        "preview": "yarn build && firebase hosting:channel:deploy preview --only functions,hosting",
+        "export": "next build && next export",
+        "deploy": "yarn export && firebase deploy",
+        "preview": "yarn export && firebase hosting:channel:deploy preview --only functions,hosting",
         "start": "next start"
     },
     "dependencies": {

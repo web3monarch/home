@@ -1,4 +1,4 @@
-
+import { PaperClipIcon } from '@heroicons/react/20/solid';
 import { ChangeEvent, useState } from 'react';
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 import { useAccount } from "wagmi";
@@ -16,39 +16,118 @@ export default function FormWhitelist() {
     const [phoneNumber, setPhoneNumber] = useState<string>("");
 
     const [agreed, setAgreed] = useState(false);
+    const [collected, setCollected] = useState(false);
 
     const { address, isConnected } = useAccount();
     const { openConnectModal } = useConnectModal();
 
     const onClickSubmit = async () => {
-        alert('coming soon!');
+        if (!firstName || !lastName || !email || !phoneNumber) {
+            alert("Please fill out all fields");
+            return;
+        }
 
-        // if (!firstName || !lastName || !email || !phoneNumber) {
-        //     alert("Please fill out all fields");
-        //     return;
-        // }
+        try {
+            const response = await fetch("/api/test", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ address, firstName, lastName, email, phoneNumber }),
+            });
+            const data = await response.json();
 
-        // try {
-        //     await firestore.collection("tmp").add({
-        //         address: address,
-        //         firstName: firstName,
-        //         lastName: lastName,
-        //         email: email,
-        //         phoneNumber: phoneNumber,
-        //     }).catch(e => console.log(e));
-
-        //     setFirstName("");
-        //     setLastName("");
-        //     setEmail("");
-        //     setPhoneNumber("");
-
-        //     console.log("Success!");
-        //     alert("Success!");
-        // } catch (error) {
-        //     console.error("Error:", error);
-        //     alert("Error!");
-        // }
+            if (response.ok) {
+                setCollected(true);
+            } else {
+                console.error("Error: ", data.error);
+            }
+        } catch (error) {
+            console.error("Error: ", error);
+        }
     }
+
+    if (collected) {
+        return (
+            <div className="isolate py-24 sm:py-32">
+                <div
+                    className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
+                    aria-hidden="true"
+                >
+                    <div
+                        className="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
+                        style={{
+                            clipPath:
+                                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+                        }}
+                    />
+                </div>
+                <div className="mx-auto mt-16 max-w-xl sm:mt-20">
+                    <div className="overflow-hidden shadow sm:rounded-lg">
+                        <div className="px-4 py-5 sm:px-6">
+                            <h3 className="text-base font-semibold leading-6 text-pure-200">
+                                Whitelist Information Collected
+                            </h3>
+                            <p className="mt-1 max-w-2xl text-sm text-pure-400">
+                                Personal details and application.
+                            </p>
+                        </div>
+                        <div className="border-t border-pure-600 px-4 py-5 sm:p-0">
+                            <dl className="sm:divide-y sm:divide-pure-600">
+                                <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
+                                    <dt className="text-sm font-medium text-pure-400">
+                                        First Name
+                                    </dt>
+                                    <dd className="mt-1 text-sm text-pure-200 sm:col-span-2 sm:mt-0">
+                                        {firstName}
+                                    </dd>
+                                </div>
+                                <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
+                                    <dt className="text-sm font-medium text-pure-400">
+                                        Last Name
+                                    </dt>
+                                    <dd className="mt-1 text-sm text-pure-200 sm:col-span-2 sm:mt-0">
+                                        {lastName}
+                                    </dd>
+                                </div>
+
+                                <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
+                                    <dt className="text-sm font-medium text-pure-400">
+                                        ERC20 Wallet Address
+                                    </dt>
+                                    <dd className="mt-1 text-sm text-pure-200 sm:col-span-2 sm:mt-0">
+                                        {address}
+                                    </dd>
+                                </div>
+
+                                <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
+                                    <dt className="text-sm font-medium text-pure-400">
+                                        Email Address
+                                    </dt>
+                                    <dd className="mt-1 text-sm text-pure-200 sm:col-span-2 sm:mt-0">
+                                        {email}
+                                    </dd>
+                                </div>
+
+                                <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
+                                    <dt className="text-sm font-medium text-pure-400">
+                                        Phone Number
+                                    </dt>
+                                    <dd className="mt-1 text-sm text-pure-200 sm:col-span-2 sm:mt-0">
+                                        {phoneNumber}
+                                    </dd>
+                                </div>
+
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+
+    }
+
+
 
     return (
         <div className="isolate py-24 sm:py-32">
@@ -75,6 +154,7 @@ export default function FormWhitelist() {
             <div className="mx-auto mt-16 max-w-xl sm:mt-20">
                 {isConnected ? (
                     <>
+
                         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                             <div>
                                 <label htmlFor="first-name" className="block text-sm font-semibold leading-6 text-pure-300">
@@ -157,52 +237,6 @@ export default function FormWhitelist() {
                                 </div>
                             </div>
 
-                            {/* <div className="sm:col-span-2">
-                        <label htmlFor="phone-number" className="block text-sm font-semibold leading-6 text-pure-300">
-                            Phone number
-                        </label>
-                        <div className="relative mt-2.5">
-                            <div className="absolute inset-y-0 left-0 flex items-center">
-                                <label htmlFor="country" className="sr-only">
-                                    Country
-                                </label>
-                                <select
-                                    id="country"
-                                    name="country"
-                                    className="h-full rounded-md border-0 bg-transparent bg-none py-0 pl-4 pr-9 text-pure-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
-                                >
-                                    <option>US</option>
-                                    <option>CA</option>
-                                    <option>EU</option>
-                                </select>
-                                <ChevronDownIcon
-                                    className="pointer-events-none absolute right-3 top-0 h-full w-5 text-pure-400"
-                                    aria-hidden="true"
-                                />
-                            </div>
-                            <input
-                                type="tel"
-                                name="phone-number"
-                                id="phone-number"
-                                autoComplete="tel"
-                                className="block w-full rounded-md border-0 px-3.5 py-2 pl-20 text-pure-900 shadow-sm ring-1 ring-inset ring-pure-300 placeholder:text-pure-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            />
-                        </div>
-                    </div> */}
-                            {/* <div className="sm:col-span-2">
-                        <label htmlFor="message" className="block text-sm font-semibold leading-6 text-pure-300">
-                            Message
-                        </label>
-                        <div className="mt-2.5">
-                            <textarea
-                                name="message"
-                                id="message"
-                                rows={4}
-                                className="block w-full rounded-md border-0 px-3.5 py-2 text-pure-900 shadow-sm ring-1 ring-inset ring-pure-300 placeholder:text-pure-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                defaultValue={''}
-                            />
-                        </div>
-                    </div> */}
                             <Switch.Group as="div" className="flex gap-x-4 sm:col-span-2">
                                 <div className="flex h-6 items-center">
                                     <Switch
@@ -269,8 +303,9 @@ export default function FormWhitelist() {
                     <button type="submit">Submit</button>
                 </form> */}
 
-            </div>
-        </div>
+            </div >
+
+        </div >
     )
 }
 

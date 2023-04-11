@@ -19,13 +19,14 @@ import CONTRACT_ABI from '../../config/abi/monarchMixer';
 
 // import TokenImage0 from '../../images/tokens/0.svg';
 import TokenImage1 from '../../images/tokens/1.jpg';
+import TokenImage2 from '../../images/tokens/2.jpg';
 // import TokenImage2 from '../../images/tokens/2.svg';
 import social from '../../config/constants/social';
 
 
 type TokenMeta = {
     imageSrc: any,
-    imageAlt: string,
+    name: string,
 }
 
 const TOKEN_METAS = [
@@ -35,7 +36,11 @@ const TOKEN_METAS = [
     // },
     {
         imageSrc: TokenImage1,
-        imageAlt: 'Token #1 Image',
+        name: 'From Canvas to Code',
+    },
+    {
+        imageSrc: TokenImage2,
+        name: 'SKYTOP',
     },
     // {
     //     imageSrc: TokenImage2,
@@ -307,7 +312,7 @@ function Example() {
         if (mintCodeJSON) {
             return {
                 type: TipType.Info,
-                message: `You can claim MonarchMixer: TokenID#${mintCodeJSON.tokenId}`,
+                message: `You can claim MonarchMixer: ${tokenMeta.name}`,
             };
         }
 
@@ -440,7 +445,7 @@ function Example() {
                                 <Image
                                     className="h-full w-auto rounded-xl"
                                     src={tokenMeta.imageSrc}
-                                    alt={tokenMeta.imageAlt}
+                                    alt={tokenMeta.name}
                                     priority={true}
                                 />
                             </div>
