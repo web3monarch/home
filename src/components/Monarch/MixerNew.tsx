@@ -1,37 +1,13 @@
 import Link from 'next/link';
-import { Fragment } from 'react';
-import { Popover, Transition } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import Image from 'next/image';
 import { ChevronRightIcon } from '@heroicons/react/20/solid';
 import social from '../../config/constants/social';
 import clsx from 'clsx';
+import mixer2 from '../../images/tokens/2.jpg';
 
 function Example() {
     return (
         <div id="mixer" className="relative overflow-hidden">
-            {/* <div className="hidden sm:absolute sm:inset-0 sm:block" aria-hidden="true">
-                <svg
-                    className="absolute bottom-0 right-0 mb-48 translate-x-1/2 transform text-pure-700 lg:top-0 lg:mt-28 lg:mb-0 xl:translate-x-0 xl:transform-none"
-                    width={364}
-                    height={384}
-                    viewBox="0 0 364 384"
-                    fill="none"
-                >
-                    <defs>
-                        <pattern
-                            id="eab71dd9-9d7a-47bd-8044-256344ee00d0"
-                            x={0}
-                            y={0}
-                            width={20}
-                            height={20}
-                            patternUnits="userSpaceOnUse"
-                        >
-                            <rect x={0} y={0} width={4} height={4} fill="currentColor" />
-                        </pattern>
-                    </defs>
-                    <rect width={364} height={384} fill="url(#eab71dd9-9d7a-47bd-8044-256344ee00d0)" />
-                </svg>
-            </div> */}
             <div className="relative pt-6 py-12 lg:py-24">
                 <main className="mt-16 sm:mt-24">
                     <div className="lg:grid lg:grid-cols-12 lg:gap-8">
@@ -39,7 +15,7 @@ function Example() {
                             <div>
                                 <Link
                                     target="_blank"
-                                    href={social.openSea}
+                                    href={social.openSeaMixer}
                                     className="inline-flex items-center rounded-full bg-zinc-800 p-1 pr-2 text-white hover:text-pure-200 sm:text-base lg:text-sm xl:text-base"
                                 >
                                     <span className="rounded-full bg-gradient-to-r from-pri-700 to-pri-600 px-3 py-0.5 text-sm font-semibold leading-5 text-white">
@@ -82,9 +58,15 @@ function Example() {
                             </div>
                         </div>
                         <div className="mt-16 sm:mt-24 lg:col-span-6 lg:mt-0">
-                            <div className="h-64 w-64 bg-white sm:mx-auto sm:w-full sm:max-w-md sm:overflow-hidden sm:rounded-lg">
+                            <Image
+                                src={mixer2}
+                                alt="Monarch Mixer"
+                                sizes="(min-width: 1024px) 32rem, 20rem"
+                                className="aspect-square rounded-2xl bg-pure-100 object-cover dark:bg-pure-800"
+                            />
+                            {/* <div className="h-64 w-64 bg-white sm:mx-auto sm:w-full sm:max-w-md sm:overflow-hidden sm:rounded-lg">
 
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </main>

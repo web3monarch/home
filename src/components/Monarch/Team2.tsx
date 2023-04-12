@@ -1,141 +1,118 @@
-
-
 import Image from 'next/image';
 import Link from 'next/link';
-import teamSampleImage from '../../images/team/sample.jpeg';
+import imageSample from '../../images/team/sample.jpeg';
+import imageBarney from '../../images/team/barney.jpeg';
+import imageSteven from '../../images/team/steven.jpeg';
+import imageSmoke from '../../images/team/smoke.jpeg';
+import imageCuff from '../../images/team/cuff.jpeg';
+import imageCayla from '../../images/team/cayla.jpeg';
+import imageTodd from '../../images/team/todd.jpeg';
+import imageChristina from '../../images/team/christina.jpeg';
+import imageYan from '../../images/team/yan.jpeg';
+import imageJunLi from '../../images/team/junli.jpeg';
+import imageGreg from '../../images/team/greg.jpeg';
+import imageJason from '../../images/team/jason.jpeg';
+import imageBobatea from '../../images/team/bobatea.jpeg';
 import { TwitterIcon, InstagramIcon, GitHubIcon, LinkedInIcon } from '../Icons/SocialIcons';
 
 const people = [
+    // {
+    //     name: 'Todd Kramer',
+    //     role: 'Artist Relation',
+    //     image: imageTodd,
+    //     bio: 'Outside of Monarch, Todd is a reputable contemporary artist manager, ROSS + Kramer Gallery owner, NFT degen, founder of GODA, and advisor to multiple Web 3 projects. Todd is committed to inspiring more artists to explore digital as a new medium.',
+    //     twitterUrl: '#',
+    //     linkedinUrl: '#',
+    // },
     {
-        name: 'Barney',
-        role: 'Community Manager and President',
-        image: teamSampleImage,
-        bio: 'Ultricies massa malesuada viverra cras lobortis.',
+        name: 'Jason H. Sun',
+        role: 'Global Relation & University Events',
+        image: imageJason,
+        bio: 'A notable alumni from Harvard University, Jason worked in financial services industry for over a decade and was the CEO of a leading financial derivatives broker in Asia and Dubai. Being the co-founder of a New York based media company Sunshine Box, Jason has worked on some of the hit media projects in NYC Times Square. Jason catalyzed the spirit of Monarch’s first on campus project, “From Canvas to Code”, at Harvard University.',
         twitterUrl: '#',
         linkedinUrl: '#',
     },
     {
-        name: 'Steven',
-        role: 'Operating Manager',
-        image: teamSampleImage,
-        bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
-        twitterUrl: '#',
-        linkedinUrl: '#',
-    },
-    {
-        name: 'Smoke',
-        role: 'Artist Relation, Lifestyle Consultant at We The Best Music',
-        image: teamSampleImage,
-        bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
-        twitterUrl: '#',
-        linkedinUrl: '#',
-    },
-    {
-        name: 'Cuff',
-        role: 'Athlete Relation, Host of SomeDude Show (executively produced by Lebron James)',
-        image: teamSampleImage,
-        bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
-        twitterUrl: '#',
-        linkedinUrl: '#',
-    },
-    {
-        name: 'Cayla',
-        role: 'Secretary and Administration',
-        image: teamSampleImage,
-        bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
-        twitterUrl: '#',
-        linkedinUrl: '#',
-    },
-    {
-        name: 'Todd Kramer',
-        role: 'Artist Relation, ROSS + Kramer Gallery Owner, founder of GODA',
-        image: teamSampleImage,
-        bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
-        twitterUrl: '#',
-        linkedinUrl: '#',
-    },
-    {
-        name: 'Shahin',
-        role: 'NFT/Web3 Advisor',
-        image: teamSampleImage,
-        bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
-        twitterUrl: '#',
-        linkedinUrl: '#',
-    },
-    {
-        name: 'Christina',
-        role: 'Growth and Global Relation',
-        image: teamSampleImage,
-        bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
+        name: '0xBobatea',
+        role: 'Official Strategy Advisor',
+        image: imageBobatea,
+        bio: 'A philosopher of Web3, wielding the ontological sledgehammer to crack the epistemic nuts. Boba Epicure is previously research at Dragonfly Crypto Venture Fund and Harvard Blockchain. In the spirit of our mission, “creatives worth sharing”, Boba Epicure helps Monarch communities, individual members, and our founding team deliver Monarch-taste at its best.',
         twitterUrl: '#',
         linkedinUrl: '#',
     },
     {
         name: 'Jun Li',
-        role: 'Economics Advisor, Professor of Mathematics Department at Stanford',
-        image: teamSampleImage,
-        bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
+        role: 'Economics Advisor',
+        image: imageJunLi,
+        bio: 'Professor of Mathematics at Stanford University. Jun won 1st place at National Math Competition in China. (2nd won by Dr. Eugene Xu, Co-Founder of LibreMax Capital ft. in movie Big Short).',
         twitterUrl: '#',
         linkedinUrl: '#',
     },
+    {
+        name: 'Yanyan',
+        role: 'Global Relation in Hong Kong',
+        image: imageYan,
+        bio: 'Passionate art collectors. Yan has a decade of experience helping Billionaires all around the world to asset allocation, including financial investment, luxury real estate financing, private jet financing, yacht financing, and arts financing.',
+        twitterUrl: '#',
+        linkedinUrl: '#',
+    },
+    {
+        name: 'Christina',
+        role: 'Financial and Risk Officer',
+        image: imageChristina,
+        bio: 'Over 15 years of experience in Investment Banking and Private Equity. Christina moved to Venture Capital in 2016 and had been trusted to become CFO by many of the projects her company invested.',
+        twitterUrl: '#',
+        linkedinUrl: '#',
+    },
+    // {
+    //     name: 'Matt',
+    //     role: 'Community builder and a dot connector',
+    //     image: imageSample,
+    //     bio: 'Over a decade spent in collecting rare sports cards and sneakers. Outside of Monarch, Matt is working in tech sales and always tends to stay in the know of what’s next in terms of emerging technologies and innovations.',
+    //     twitterUrl: '#',
+    //     linkedinUrl: '#',
+    // },
 ]
 
 
 export default function Example() {
     return (
         <div id="team" className="py-12 lg:py-24">
-            <div className="space-y-12 lg:grid lg:grid-cols-3 lg:gap-8 lg:space-y-0">
-                <div className="space-y-5 sm:space-y-4">
-                    <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                        About Us
-                    </h2>
-                    <p className="text-base text-pure-400">
-                        Nulla quam felis, enim faucibus proin velit, ornare id pretium. Augue ultrices sed arcu condimentum
-                        vestibulum suspendisse. Volutpat eu faucibus vivamus eget bibendum cras.
-                    </p>
-                </div>
-                <div className="lg:col-span-2">
-                    <ul role="list" className="space-y-12 sm:-mt-8 sm:space-y-0 sm:divide-y sm:divide-pure-600/60 lg:gap-x-8 lg:space-y-0">
-                        {people.map((person) => (
-                            <li key={person.name} className="sm:py-8">
-                                <div className="space-y-4 sm:grid sm:grid-cols-3 sm:items-start sm:gap-6 sm:space-y-0">
-                                    <div className="aspect-w-3 aspect-h-2 sm:aspect-w-3 sm:aspect-h-4">
-                                        <Image className="rounded-lg object-cover shadow-lg hover:saturate-150" src={person.image} alt="" />
-                                    </div>
-                                    <div className="sm:col-span-2">
-                                        <div className="space-y-4">
-                                            <div className="space-y-2 text-lg font-medium text-pure-50 leading-6">
-                                                <h3>
-                                                    {person.name}
-                                                </h3>
-                                                <p className="text-pure-200/70">
-                                                    {person.role}
-                                                </p>
-                                            </div>
-                                            <div className="text-base">
-                                                <p className="text-pure-500">{person.bio}</p>
-                                            </div>
-                                            <ul role="list" className="flex space-x-5">
-                                                <li>
-                                                    <a href={person.twitterUrl} className="group fill-pure-500">
-                                                        <span className="sr-only">Twitter</span>
-                                                        <TwitterIcon className="transition h-auto w-6 group-hover:fill-pri-400" />
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href={person.linkedinUrl} className="group fill-pure-500">
-                                                        <span className="sr-only">LinkedIn</span>
-                                                        <LinkedInIcon className="transition h-auto w-6 group-hover:fill-pri-400" />
-                                                    </a>
-                                                </li>
-                                            </ul>
+            <div className="space-y-12">
+                <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                    Spotlight Member
+                </h2>
+                <ul
+                    role="list"
+                    className="space-y-12 lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8 lg:gap-y-12 lg:space-y-0"
+                >
+                    {people.map((person) => (
+                        <li key={person.name}>
+                            <div className="space-y-4 sm:grid sm:grid-cols-3 sm:gap-6 sm:space-y-0 lg:gap-8">
+                                <div className="aspect-w-3 aspect-h-2 h-0 sm:aspect-w-3 sm:aspect-h-4">
+                                    <Image className="rounded-lg object-cover shadow-lg hover:saturate-150" src={person.image} alt="" />
+                                </div>
+                                <div className="sm:col-span-2">
+                                    <div className="space-y-4">
+                                        <div className="space-y-1 text-lg font-medium leading-6">
+                                            <h3>
+                                                {person.name}
+                                            </h3>
+                                            <p className="text-sec-500">
+                                                {person.role}
+                                            </p>
+                                        </div>
+                                        <div className="text-base">
+                                            <p className="text-gray-500">
+                                                {person.bio}
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
             </div>
         </div>
     )

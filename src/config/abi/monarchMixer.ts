@@ -12,9 +12,9 @@ export default [
                 "type": "string"
             },
             {
-                "internalType": "string",
+                "internalType": "bytes",
                 "name": "uri_",
-                "type": "string"
+                "type": "bytes"
             }
         ],
         "stateMutability": "nonpayable",
@@ -98,6 +98,25 @@ export default [
             }
         ],
         "name": "OwnershipTransferred",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "account",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "bool",
+                "name": "status",
+                "type": "bool"
+            }
+        ],
+        "name": "SetSigner",
         "type": "event"
     },
     {
@@ -314,17 +333,36 @@ export default [
                 "type": "uint256"
             }
         ],
-        "name": "getWhitelist",
+        "name": "getDeadline",
         "outputs": [
             {
-                "internalType": "bytes32",
-                "name": "merkleRoot",
-                "type": "bytes32"
-            },
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
             {
                 "internalType": "uint256",
-                "name": "timestamp",
+                "name": "tokenId_",
                 "type": "uint256"
+            },
+            {
+                "internalType": "address",
+                "name": "account_",
+                "type": "address"
+            }
+        ],
+        "name": "isAccountClaimed",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
             }
         ],
         "stateMutability": "view",
@@ -362,12 +400,31 @@ export default [
                 "type": "uint256"
             },
             {
+                "internalType": "uint64",
+                "name": "sigId_",
+                "type": "uint64"
+            }
+        ],
+        "name": "isSigIdClaimed",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
                 "internalType": "address",
                 "name": "account_",
                 "type": "address"
             }
         ],
-        "name": "isClaimedAccount",
+        "name": "isSigner",
         "outputs": [
             {
                 "internalType": "bool",
@@ -387,56 +444,13 @@ export default [
             },
             {
                 "internalType": "uint64",
-                "name": "proofId_",
-                "type": "uint64"
-            }
-        ],
-        "name": "isClaimedProof",
-        "outputs": [
-            {
-                "internalType": "bool",
-                "name": "",
-                "type": "bool"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "account_",
-                "type": "address"
-            }
-        ],
-        "name": "isHost",
-        "outputs": [
-            {
-                "internalType": "bool",
-                "name": "",
-                "type": "bool"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "tokenId_",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint64",
-                "name": "proofId_",
+                "name": "sigId_",
                 "type": "uint64"
             },
             {
-                "internalType": "bytes32[]",
-                "name": "proof_",
-                "type": "bytes32[]"
+                "internalType": "bytes",
+                "name": "signature_",
+                "type": "bytes"
             }
         ],
         "name": "mint",
@@ -471,6 +485,35 @@ export default [
         "type": "function"
     },
     {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_tokenId",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint64",
+                "name": "_sigId",
+                "type": "uint64"
+            },
+            {
+                "internalType": "bytes",
+                "name": "_signature",
+                "type": "bytes"
+            }
+        ],
+        "name": "recoverSigner",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "pure",
+        "type": "function"
+    },
+    {
         "inputs": [],
         "name": "renounceOwnership",
         "outputs": [],
@@ -498,7 +541,7 @@ export default [
                 "type": "address"
             }
         ],
-        "name": "revokeHost",
+        "name": "revokeSigner",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -619,12 +662,17 @@ export default [
     {
         "inputs": [
             {
-                "internalType": "string",
-                "name": "uri_",
-                "type": "string"
+                "internalType": "uint256",
+                "name": "tokenId_",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "timestamp_",
+                "type": "uint256"
             }
         ],
-        "name": "setContractURI",
+        "name": "setDeadline",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -655,7 +703,30 @@ export default [
                 "type": "address"
             }
         ],
-        "name": "setHost",
+        "name": "setSigner",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "tokenId_",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "timestamp_",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bytes",
+                "name": "baseUri_",
+                "type": "bytes"
+            }
+        ],
+        "name": "setTokenId",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -686,71 +757,12 @@ export default [
     {
         "inputs": [
             {
-                "internalType": "string",
+                "internalType": "bytes",
                 "name": "uri_",
-                "type": "string"
+                "type": "bytes"
             }
         ],
         "name": "setURI",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "tokenId_",
-                "type": "uint256"
-            },
-            {
-                "internalType": "bytes32",
-                "name": "merkleRoot_",
-                "type": "bytes32"
-            },
-            {
-                "internalType": "uint256",
-                "name": "timestamp_",
-                "type": "uint256"
-            }
-        ],
-        "name": "setWhitelist",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "tokenId_",
-                "type": "uint256"
-            },
-            {
-                "internalType": "bytes32",
-                "name": "merkleRoot_",
-                "type": "bytes32"
-            }
-        ],
-        "name": "setWhitelistMerkleRoot",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "tokenId_",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "timestamp_",
-                "type": "uint256"
-            }
-        ],
-        "name": "setWhitelistTimestamp",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -855,21 +867,21 @@ export default [
         "inputs": [
             {
                 "internalType": "uint256",
-                "name": "tokenId_",
+                "name": "_tokenId",
                 "type": "uint256"
             },
             {
                 "internalType": "uint64",
-                "name": "proofId_",
+                "name": "_sigId",
                 "type": "uint64"
             },
             {
-                "internalType": "bytes32[]",
-                "name": "proof_",
-                "type": "bytes32[]"
+                "internalType": "bytes",
+                "name": "_signature",
+                "type": "bytes"
             }
         ],
-        "name": "verify",
+        "name": "verifySig",
         "outputs": [
             {
                 "internalType": "bool",
