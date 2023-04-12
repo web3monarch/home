@@ -6,7 +6,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { ChevronRightIcon } from '@heroicons/react/20/solid';
 import social from '../../config/constants/social';
 import clsx from 'clsx';
-import mixer1 from '../../images/tokens/1.jpg';
+import mixer2 from '../../images/tokens/2.jpg';
 
 function Example() {
     return (
@@ -85,8 +85,8 @@ function Example() {
                         </div>
                         <div className="mt-16 sm:mt-24 lg:col-span-6 lg:mt-0">
                             <Image
-                                src={mixer1}
-                                alt=""
+                                src={mixer2}
+                                alt="Monarch Mixer"
                                 sizes="(min-width: 1024px) 32rem, 20rem"
                                 className="aspect-square rounded-2xl bg-pure-100 object-cover dark:bg-pure-800"
                             />

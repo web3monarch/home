@@ -199,7 +199,7 @@ function Example() {
             return;
         }
 
-        setTokenMeta(TOKEN_METAS[0]);
+        setTokenMeta(TOKEN_METAS[TOKEN_METAS.length - 1]);
     }, [mintCodeJSON]);
 
 
@@ -443,7 +443,7 @@ function Example() {
                             <div className="sm:mx-auto sm:w-full sm:max-w-md sm:overflow-hidden">
                                 {/* ... sm:rounded-lg */}
                                 <Image
-                                    className="h-full w-auto rounded-xl"
+                                    className="rounded-xl"
                                     src={tokenMeta.imageSrc}
                                     alt={tokenMeta.name}
                                     priority={true}
