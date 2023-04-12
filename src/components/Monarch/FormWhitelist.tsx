@@ -11,24 +11,96 @@ function classNames(...classes: string[]) {
 
 export default function FormWhitelist() {
     const [firstName, setFirstName] = useState<string>("");
+    const [firstNameErrorMessage, setFirstNameErrorMessage] = useState<string>("");
     const [lastName, setLastName] = useState<string>("");
+    const [lastNameErrorMessage, setLastNameErrorMessage] = useState<string>("");
     const [email, setEmail] = useState<string>("");
+    const [emailErrorMessage, setEmailErrorMessage] = useState<string>("");
     const [phoneNumber, setPhoneNumber] = useState<string>("");
+    const [phoneNumberErrorMessage, setPhoneNumberErrorMessage] = useState<string>('');
 
     const [agreed, setAgreed] = useState(false);
+    const [agreedErrorMessage, setAgreedErrorMessage] = useState<string>('');
+
+
+    const [submitting, setSubmitting] = useState(false);
     const [collected, setCollected] = useState(false);
 
     const { address, isConnected } = useAccount();
     const { openConnectModal } = useConnectModal();
 
+    const validateEmail = (email: string) => {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email.toLowerCase());
+    };
+
+    const validatePhoneNumber = (phoneNumber: string) => {
+        const re = /^\+?\d{8,13}$/;
+        return re.test(phoneNumber);
+    };
+
+    const onChangeFirstName = (e: ChangeEvent<HTMLInputElement>) => {
+        const s: string = e.target.value.trim();
+        setFirstName(s.charAt(0).toUpperCase() + s.slice(1));
+    };
+
+    const onChangeLastName = (e: ChangeEvent<HTMLInputElement>) => {
+        const s: string = e.target.value.trim();
+        setLastName(s.charAt(0).toUpperCase() + s.slice(1));
+    };
+
+    const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
+        setEmail(e.target.value.trim());
+        setEmailErrorMessage("");
+    };
+
+    const onChangePhoneNumber = (e: ChangeEvent<HTMLInputElement>) => {
+        setPhoneNumber(e.target.value.trim());
+        setPhoneNumberErrorMessage("");
+    };
+
+
+
     const onClickSubmit = async () => {
-        if (!firstName || !lastName || !email || !phoneNumber) {
-            alert("Please fill out all fields");
+        if (!firstName) {
+            setFirstNameErrorMessage("Cannot be empty");
             return;
+        } else {
+            setFirstNameErrorMessage("");
         }
 
+        if (!lastName) {
+            setLastNameErrorMessage("Cannot be empty");
+            return;
+        } else {
+            setLastNameErrorMessage("");
+        }
+
+        if (!validateEmail(email)) {
+            setEmailErrorMessage("Please enter a valid email address");
+            return;
+        } else {
+            setEmailErrorMessage("");
+        }
+
+        if (!validatePhoneNumber(phoneNumber)) {
+            setPhoneNumberErrorMessage("Please enter a valid phone number");
+            return;
+        } else {
+            setPhoneNumberErrorMessage("");
+        }
+
+        if (!agreed) {
+            setAgreedErrorMessage("Please agree to the terms and conditions");
+            return;
+        } else {
+            setAgreedErrorMessage("");
+        }
+
+        setSubmitting(true);
+
         try {
-            const response = await fetch("/api/test", {
+            const response = await fetch("/api/t1", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -42,8 +114,11 @@ export default function FormWhitelist() {
             } else {
                 console.error("Error: ", data.error);
             }
+
+            setSubmitting(false);
         } catch (error) {
             console.error("Error: ", error);
+            setSubmitting(false);
         }
     }
 
@@ -68,9 +143,6 @@ export default function FormWhitelist() {
                             <h3 className="text-base font-semibold leading-6 text-pure-200">
                                 Whitelist Information Collected
                             </h3>
-                            <p className="mt-1 max-w-2xl text-sm text-pure-400">
-                                Personal details and application.
-                            </p>
                         </div>
                         <div className="border-t border-pure-600 px-4 py-5 sm:p-0">
                             <dl className="sm:divide-y sm:divide-pure-600">
@@ -124,10 +196,7 @@ export default function FormWhitelist() {
                 </div>
             </div>
         )
-
     }
-
-
 
     return (
         <div className="isolate py-24 sm:py-32">
@@ -145,16 +214,15 @@ export default function FormWhitelist() {
             </div>
             <div className="mx-auto max-w-2xl text-center">
                 <h2 className="text-3xl font-bold tracking-tight text-pure-200 sm:text-4xl">
-                    Whitelist Collection - Tier 1
+                    INVITATION TO MONARCH
                 </h2>
                 <p className="mt-2 text-lg leading-8 text-pure-400">
-                    Aute magna irure deserunt veniam aliqua magna enim voluptate.
+                    Invitation to the Monarch NFT Exhibition “Phase I”
                 </p>
             </div>
             <div className="mx-auto mt-16 max-w-xl sm:mt-20">
                 {isConnected ? (
                     <>
-
                         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                             <div>
                                 <label htmlFor="first-name" className="block text-sm font-semibold leading-6 text-pure-300">
@@ -167,10 +235,13 @@ export default function FormWhitelist() {
                                         id="first-name"
                                         // autoComplete="given-name"
                                         value={firstName}
-                                        onChange={(e) => setFirstName(e.currentTarget.value.trim())}
+                                        onChange={onChangeFirstName}
                                         className="block w-full rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:bg-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                                     />
                                 </div>
+                                <p className="mt-2 text-sm text-red-600">
+                                    {firstNameErrorMessage}
+                                </p>
                             </div>
                             <div>
                                 <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-pure-300">
@@ -183,10 +254,13 @@ export default function FormWhitelist() {
                                         id="last-name"
                                         autoComplete="family-name"
                                         value={lastName}
-                                        onChange={(e) => setLastName(e.currentTarget.value.trim())}
+                                        onChange={onChangeLastName}
                                         className="block w-full rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:bg-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                                     />
                                 </div>
+                                <p className="mt-2 text-sm text-red-600">
+                                    {lastNameErrorMessage}
+                                </p>
                             </div>
                             <div className="sm:col-span-2">
                                 <label htmlFor="company" className="block text-sm font-semibold leading-6 text-pure-300">
@@ -215,10 +289,13 @@ export default function FormWhitelist() {
                                         id="email"
                                         autoComplete="email"
                                         value={email}
-                                        onChange={(e) => setEmail(e.currentTarget.value.trim())}
+                                        onChange={onChangeEmail}
                                         className="block w-full rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:bg-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                                     />
                                 </div>
+                                <p className="mt-2 text-sm text-red-600">
+                                    {emailErrorMessage}
+                                </p>
                             </div>
                             <div className="sm:col-span-2">
                                 <label htmlFor="phone-number" className="block text-sm font-semibold leading-6 text-pure-300">
@@ -231,10 +308,13 @@ export default function FormWhitelist() {
                                         id="phone-number"
                                         autoComplete="tel"
                                         value={phoneNumber}
-                                        onChange={(e) => setPhoneNumber(e.currentTarget.value.trim())}
+                                        onChange={onChangePhoneNumber}
                                         className="block w-full rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:bg-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                                     />
                                 </div>
+                                <p className="mt-2 text-sm text-red-600">
+                                    {phoneNumberErrorMessage}
+                                </p>
                             </div>
 
                             <Switch.Group as="div" className="flex gap-x-4 sm:col-span-2">
@@ -270,11 +350,15 @@ export default function FormWhitelist() {
                             <button
                                 type="button"
                                 onClick={onClickSubmit}
+                                disabled={submitting}
                                 className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 uppercase"
                             >
                                 Submit
                             </button>
                         </div>
+                        <p className="mt-2 text-sm text-red-600 text-center">
+                            {agreedErrorMessage}
+                        </p>
                     </>
                 ) : (
                     <button
