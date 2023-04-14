@@ -1,5 +1,5 @@
 import { PaperClipIcon } from '@heroicons/react/20/solid';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState, useEffect } from 'react';
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 import { useAccount } from "wagmi";
 import { Switch } from '@headlessui/react';
@@ -7,6 +7,14 @@ import { firestore } from "../../../firebaseClient";
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
+}
+
+interface WhitelistRecord {
+    address: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phoneNumber: string;
 }
 
 export default function FormWhitelist() {
@@ -22,12 +30,52 @@ export default function FormWhitelist() {
     const [agreed, setAgreed] = useState(false);
     const [agreedErrorMessage, setAgreedErrorMessage] = useState<string>('');
 
-
+    const [loading, setLoading] = useState(false);
     const [submitting, setSubmitting] = useState(false);
     const [collected, setCollected] = useState(false);
 
     const { address, isConnected } = useAccount();
     const { openConnectModal } = useConnectModal();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+
+            try {
+                const response = await fetch('/api/t1-data', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ address: address }),
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    setFirstName(data.firstName);
+                    setLastName(data.lastName);
+                    setEmail(data.email);
+                    setPhoneNumber(data.phoneNumber);
+                    setCollected(true);
+                } else {
+                    setFirstName("");
+                    setLastName("");
+                    setEmail("");
+                    setPhoneNumber("");
+                    setCollected(false);
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                setLoading(false);
+            }
+
+            setLoading(false);
+        };
+
+        if (address) {
+            fetchData();
+        }
+    }, [address])
 
     const validateEmail = (email: string) => {
         const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
