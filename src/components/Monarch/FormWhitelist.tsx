@@ -4,6 +4,7 @@ import { useConnectModal } from '@rainbow-me/rainbowkit';
 import { useAccount } from "wagmi";
 import { Switch } from '@headlessui/react';
 import { firestore } from "../../../firebaseClient";
+import useSWR from 'swr';
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
@@ -16,6 +17,22 @@ interface WhitelistRecord {
     email: string;
     phoneNumber: string;
 }
+
+// const fetcher = async (address: string) => {
+//     const response = await fetch('/api/t1-data', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify({ address: address }),
+//     });
+
+//     if (response.ok) {
+//         return await response.json();
+//     } else {
+//         throw new Error('Failed to fetch data');
+//     }
+// };
 
 export default function FormWhitelist() {
     const [firstName, setFirstName] = useState<string>("");
