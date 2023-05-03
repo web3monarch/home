@@ -1,8 +1,11 @@
 # tmp
 src/cloudFunctions
 
+.yarn
+.yarnrc.yml
 
 *DS_Store
+.vscode
 .vscode
 .firebase
 
