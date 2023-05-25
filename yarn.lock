@@ -1694,7 +1694,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:18.0.34":
+"@types/react@npm:*":
   version: 18.0.34
   resolution: "@types/react@npm:18.0.34"
   dependencies:
@@ -1702,6 +1702,17 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: 60d2766e7644ec480075bbb154bf8fb8476089466b643662ef59964e27cae2d8c71fd9c717a4dfa9627c3e050fa2ae866d10d16f66b4509058d1bfe2a564b18c
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:18.2.7":
+  version: 18.2.7
+  resolution: "@types/react@npm:18.2.7"
+  dependencies:
+    "@types/prop-types": "*"
+    "@types/scheduler": "*"
+    csstype: ^3.0.2
+  checksum: caa5da4cf929766738ec789301dc6fb6624bd48dd317d851c4c9b84b1f47cd8ebe17fe01398cadaa0bc938cd4d502d67f4b9de9ff771dc132096bdc86228efba
   languageName: node
   linkType: hard
 
@@ -5530,7 +5541,7 @@ __metadata:
     "@tailwindcss/typography": ^0.5.9
     "@typechain/ethers-v5": ^10.2.0
     "@types/node": 18.15.11
-    "@types/react": 18.0.34
+    "@types/react": 18.2.7
     "@types/react-dom": 18.0.11
     autoprefixer: ^10.4.13
     classnames: ^2.3.2
