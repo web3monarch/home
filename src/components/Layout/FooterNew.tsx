@@ -5,6 +5,9 @@ import { Logo } from '../Monarch/LogoNew';
 import { TwitterIcon, InstagramIcon, GitHubIcon, LinkedInIcon } from '../Icons/SocialIcons';
 import clsx from 'clsx';
 import social from '../../config/constants/social';
+import ThemeToggle from './ThemeToggle';
+
+
 
 interface SocialLinkProps {
     href: string;
@@ -114,6 +117,7 @@ export function Footer() {
                                 ].map((link, key) => (
                                     <SocialLink key={key} href={link.href} ariaLabel={link.ariaLabel} icon={link.icon} />
                                 ))}
+                                <ThemeToggle />
                             </div>
 
                             <p className="pointer-events-none select-none text-sm text-pure-600">
