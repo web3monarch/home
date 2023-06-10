@@ -71,7 +71,7 @@ const Page: NextPage = () => {
                         <h1 className="text-4xl font-bold tracking-tight text-pure-800 dark:text-pure-100 sm:text-5xl">
                             About Monarch
                         </h1>
-                        <div className="mt-6 space-y-7 text-base text-pure-600 dark:text-pure-400">
+                        <div className="mt-6 space-y-7 text-base text-pure-700 dark:text-pure-400">
                             <p>
                                 Behind every extraordinary collectible, there is a unique story and journey.
                             </p>
@@ -107,7 +107,7 @@ const Page: NextPage = () => {
                             >
                                 {social.email}
                             </SocialLink>
-                        </ul>
+                        </ul>                   
                     </div>
                 </div>
             </Container>

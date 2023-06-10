@@ -69,7 +69,7 @@ export default function Example() {
     return (
         <div id="team" className="py-12 lg:py-24">
             <div className="space-y-12">
-                <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                <h2 className="text-3xl font-bold tracking-tight text-black sm:text-4xl dark:text-white">
                     Leadership
                 </h2>
                 <ul
@@ -93,7 +93,7 @@ export default function Example() {
                                             </p>
                                         </div>
                                         <div className="text-base">
-                                            <p className="text-gray-500">
+                                            <p className="dark:text-gray-500 text-pure-700">
                                                 {person.bio}
                                             </p>
                                         </div>

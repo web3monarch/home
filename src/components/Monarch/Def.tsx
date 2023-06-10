@@ -23,10 +23,10 @@ function Example() {
     return (
         <div className="py-12 lg:py-24">
             <div className="max-w-3xl">
-                <h1 className="text-4xl font-bold tracking-tight text-pure-100 sm:text-5xl">
+                <h1 className="text-4xl font-bold tracking-tight dark:text-pure-100 text-pure-700 sm:text-5xl">
                     What is Monarch?
                 </h1>
-                <p className="mt-6 text-base text-pure-400">
+                <p className="mt-6 text-base dark:text-pure-400 text-pure-700">
                     Collectible is a universal language. Monarch is a global village for collectors & artists to exchange resources and opportunities. We share the passion of discovering new collectibles and the "if you know, you know”. We are releasing an NFT membership collection for our friends, builders, artists, and partners. The support we generate will become fire and gas to make Monarch a bigger hub. A hub that discovers new creators and explores their imagination since day one. A hub that bridges people, culture, creatives around the world.
                 </p>
             </div>
