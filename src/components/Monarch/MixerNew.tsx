@@ -26,10 +26,10 @@ function Example() {
                                     </span>
                                     <ChevronRightIcon className="ml-2 h-5 w-5 text-pure-500" aria-hidden="true" />
                                 </Link>
-                                <h1 className="mt-4 text-4xl font-bold tracking-tight text-pure-100 sm:text-5xl">
+                                <h1 className="mt-4 text-4xl font-bold tracking-tight dark:text-pure-100 text-pure-700 sm:text-5xl">
                                     Monarch Mixer
                                 </h1>
-                                <p className="mt-6 text-base text-pure-400">
+                                <p className="mt-6 text-base dark:text-pure-400 text-pure-700">
                                     Monarch Mixer is a collection of NFT mementos,
                                     minted in recognition for our early supporters.
                                     The word
@@ -48,7 +48,7 @@ function Example() {
                                     <Link
                                         href="/mixer"
                                         className={clsx(
-                                            'mt-6 flex flex-shrink-0 items-center justify-center rounded-md border border-white border-opacity-25 bg-white bg-opacity-0 py-3 px-4 text-base font-medium text-white sm:mt-0 sm:ml-8 lg:ml-0 lg:w-full',
+                                            'mt-6 flex flex-shrink-0 items-center justify-center rounded-md border border-black dark:border-white border-opacity-25 bg-white bg-opacity-0 py-3 px-4 text-base font-medium dark:text-white text-black sm:mt-0 sm:ml-8 lg:ml-0 lg:w-full',
                                             'hover:bg-gradient-to-br hover:from-pri-600 hover:via-pri-500 hover:to-pri-600'
                                         )}
                                     >

@@ -324,7 +324,7 @@ function Example() {
 
         if (tip.type === TipType.Error) {
             return (
-                <p className="mt-3 text-sm text-rose-300 sm:mt-4">
+                <p className="mt-3 text-sm dark:text-rose-300 text-rose-500 sm:mt-4">
                     {tip.message}
                 </p>
             )
@@ -339,7 +339,7 @@ function Example() {
         }
 
         return (
-            <p className="mt-3 text-sm text-pure-300 sm:mt-4">
+            <p className="mt-3 text-sm dark:text-pure-300 text-pure-600 sm:mt-4">
                 {tip.message}
             </p>
         )
@@ -395,7 +395,7 @@ function Example() {
                                     </span>
                                     <ChevronRightIcon className="ml-2 h-5 w-5 text-pure-500" aria-hidden="true" />
                                 </Link>
-                                <h1 className="mt-4 text-4xl font-bold tracking-tight text-pure-100 sm:text-5xl">
+                                <h1 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl dark:text-pure-100 text-black">
                                     <span className="block">
                                         Claim Monarch Mixer
                                     </span>
@@ -403,7 +403,7 @@ function Example() {
                                         Join our Journey
                                     </span>
                                 </h1>
-                                <p className="mt-6 text-base text-pure-400">
+                                <p className="mt-6 text-base text-pure-700 dark:text-pure-400">
                                     Monarch Mixer are NFT mementos,
                                     minted in recognition for our early supporters.
                                     The word “Mixer” describes our journey and mission –
@@ -426,7 +426,7 @@ function Example() {
                                                     type="mint-code"
                                                     onChange={(e) => setMintCode(e.currentTarget.value.trim())}
                                                     placeholder="Enter your Mint-Code"
-                                                    className="block w-full rounded-md border-0 px-4 py-3 disabled:bg-pure-300 text-base text-pure-200 placeholder-pure-400 focus:outline-none focus:ring-2 focus:ring-sec-300 focus:ring-offset-2 focus:ring-offset-pure-900 disabled:placeholder-pure-600"
+                                                    className="block w-full rounded-md border-0 dark:bg-[#3B3B3B] bg-pure-200  px-4 py-3 dark:disabled:bg-pure-300 text-base dark:text-pure-200 text-pure-700 placeholder-pure-400 focus:outline-none focus:ring-2 focus:ring-sec-300 focus:ring-offset-2 focus:ring-offset-pure-900 disabled:placeholder-pure-600"
                                                     disabled={!isConnected}
                                                 />
                                             </div>
@@ -434,7 +434,7 @@ function Example() {
                                                 <Button />
                                             </div>
                                         </div>
-                                        <Tip />
+                                            <Tip />                         
                                     </div>
                                 </div>
                             </div>

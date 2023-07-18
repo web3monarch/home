@@ -32,7 +32,7 @@ export const CustomConnect = () => {
                                 <button
                                     onClick={openChainModal}
                                     type="button"
-                                    className="flex items-center rounded-md border-transparent bg-none py-0.5 pl-2 pr-5 text-sm font-medium text-white focus:border-transparent focus:outline-none focus:ring-0 group-hover:text-pure-100"
+                                    className="flex items-center rounded-md border-transparent bg-none py-0.5 pl-2 pr-5 text-sm font-medium dark:text-white text-black focus:border-transparent focus:outline-none focus:ring-0 group-hover:text-pure-100"
                                 >
                                     Wrong network
                                 </button>
@@ -85,7 +85,7 @@ export const CustomConnect = () => {
                                 {account.displayName}
                                 {account.displayBalance ? ` (${account.displayBalance})` : ""}
                             </button>
-
+                            
                             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center">
                                 <ChevronDownIcon className="h-5 w-5 text-pure-300" aria-hidden="true" />
                             </div>

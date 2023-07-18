@@ -7,8 +7,6 @@ import clsx from 'clsx';
 import social from '../../config/constants/social';
 import ThemeToggle from './ThemeToggle';
 
-
-
 interface SocialLinkProps {
     href: string;
     ariaLabel: string;
@@ -33,17 +31,19 @@ export function Footer() {
                 <div className="py-16">
                     <InnerContainer>
                         <div>
+                       
                             <Logo className={clsx(
                                 'pointer-events-auto',
                                 'transition ease-in-out duration-500 backdrop-blur',
                                 'mx-auto h-auto w-12 md:w-16',
                                 // 'shadow-lg shadow-pure-800/5',
-                                'text-pure-600 hover:text-white',
+                                'text-pure-600 dark:hover:text-white hover:text-black',
                             )} />
                         </div>
-
+                        
                         <div className="mt-10 text-sm" aria-label="quick links">
                             <div className="-my-1 flex justify-center gap-x-6">
+
                                 {[
                                     {
                                         target: "",
@@ -91,6 +91,7 @@ export function Footer() {
                             'flex flex-col items-center sm:flex-row-reverse sm:justify-between',
                             'gap-6 sm:flex-row',
                         )}>
+                            <ThemeToggle />
                             <div className="flex gap-x-6">
                                 {[
                                     {
@@ -117,7 +118,7 @@ export function Footer() {
                                 ].map((link, key) => (
                                     <SocialLink key={key} href={link.href} ariaLabel={link.ariaLabel} icon={link.icon} />
                                 ))}
-                                <ThemeToggle />
+                               
                             </div>
 
                             <p className="pointer-events-none select-none text-sm text-pure-600">
